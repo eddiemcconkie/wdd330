@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 02</title>
+    <link rel="stylesheet" href="../css/notes.css" />
+  </head>
+  <body>
+    <section class="page-content">
+      <h1>Week 02</h1>
+      <nav>
+        <a href="../">Home</a>
+        <a href="./teamactivity.html">Team Activity</a>
+      </nav>
+      <h2>Chapter 2 - Programming Basics</h2>
+      <ul>
+        <li>
+          Variables declared with <code>let</code> can be redefined, while
+          <code>const</code> variables cannot. <code>let</code> and <code>const</code> are both
+          block-scoped.
+        </li>
+        <li><code>var</code> is the old way to declare variables. It's not recommended.</li>
+        <li>
+          Template literals are strings surrounded by backticks <code>`</code> that allow you to
+          embed expressions in them. This is called string interpolation. Expressions are wrapped in
+          <code>${...}</code>.
+          <pre>
+  <code>const name = "Eddie"</code>
+  <code>console.log(`My name is ${name}!`)</code>
+  <code>// Outputs: My name is Eddie!</code>
+          </pre>
+        </li>
+        <li>
+          The <code>Number()</code> and <code>String()</code> functions can be used to convert
+          between numbers and strings.
+        </li>
+        <li>
+          As an alternative to <code>Number()</code>, you can use <code>parseInt()</code> which will
+          parse the first number it finds in a string. You can also specify the base to convert the
+          number to.
+        </li>
+        <li>
+          <code>parseFloat()</code> is similar to <code>parseInt()</code>. However, it doesn't round
+          the number, it truncates it.
+        </li>
+      </ul>
+      <h2>Chapter 3 - Array, Logic, and Loops</h2>
+      <ul>
+        <li>
+          You can use array destructuring to swap two variables.
+          <pre>
+  <code>[x,y] = [y,x]</code>
+          </pre>
+        </li>
+        <li>
+          Several useful array methods include:
+          <pre>
+  <code>Array.pop()     // Removes element from the end of the array</code>
+  <code>Array.push()    // Adds element to the end of the array</code>
+  <code>Array.shift()   // Removes element from the start of the array</code>
+  <code>Array.push()    // Adds element to the start of the array</code>
+  <code>Array.slice()   // Returns a subarray (non-destructive)</code>
+  <code>Array.splice()  // Insert/remove values from an array (destructive)</code>
+          </pre>
+        </li>
+      </ul>
+      <h2>Chapter 4 - Functions</h2>
+      <ul>
+        <li>
+          The <code>rest</code> operator (<code>...</code>) is used to collect arguments passed to a
+          function and store them in an array.
+        </li>
+        <li>
+          Functions and variables declared with <code>var</code> are hoisted to the top of their
+          scope, meaning they can be used before they are declared. ES6 arrow functions and
+          block-scoped variables are not hoisted.
+        </li>
+        <li>
+          Array iterators, such as the following, can be used for various array methods, and can
+          even be chained together.
+          <pre>
+  <code>Array.foreach()  // Uses a callback function on each element in the array</code>
+  <code>Array.map()      // Similar to foreach, maps each value to a new value</code>
+  <code>Array.reduce()   // Reduces items in an array down to a single value</code>
+  <code>Array.filter()   // Filters out items from an array and returns a new array</code>
+          </pre>
+        </li>
+      </ul>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 03</title>
+    <link rel="stylesheet" href="../css/notes.css" />
+  </head>
+  <body>
+    <section class="page-content">
+      <h1>Week 03</h1>
+      <nav>
+        <a href="../">Home</a>
+        <a href="./teamactivity.html">Team Activity</a>
+      </nav>
+      <h2>Chapter 5 - Objects</h2>
+      <ul>
+        <li>
+          When creating an object literal, you can use square brackets to create a computed property
+          name. JS expressions can also be used as the value of a property.
+        </li>
+        <li>
+          You can use the <code>in</code> operator to check if a property exists on an object.
+          <code>in</code> can also be used to loop through the keys of an object.
+        </li>
+        <li>
+          You can also use the <code>hasOwnProperty()</code> method, which will check if the object
+          has a property that has not been inherited.
+        </li>
+        <li>
+          Objects can be passed as parameters to functions. The function can use destructuring to
+          choose which properties are used in the function.
+        </li>
+        <li>
+          The <code>this</code> keyword refers to the object it is inside of. It can be used to
+          allow functions inside of an object to access other properties of the object.
+        </li>
+      </ul>
+      <h2>Chapter 6 - The DOM</h2>
+      <ul>
+        <li>
+          The <code>childNodes</code> property of an element returns a NodeList of all the child
+          nodes of that element, including text nodes. The <code>children</code> property of an
+          element returns a HTMLCollection of all the child elements of that element, excluding text
+          nodes. There are also <code>firstChild</code>, <code>lastChild</code>,
+          <code>nextSibling</code>, and <code>previousSibling</code> properties.
+        </li>
+        <li>
+          Node lists are not arrays, but they can be converted to arrays using the
+          <code>Array.from()</code> method, or the spread operator.
+        </li>
+        <li>
+          A DOM node can only exist in one place in the DOM. Using the <code>appendChild()</code> or
+          <code>insertBefore()</code> methods will move the node to a different location in the DOM.
+        </li>
+      </ul>
+      <h2>Chapter 7 - Events</h2>
+      <ul>
+        <li>
+          When handling keyboard events, you can check for keyboard combinations using the event's
+          <code>shiftKey</code>, <code>ctrlKey</code>, and <code>altKey</code> properties.
+        </li>
+        <li>
+          Click events go through the capturing and bubbling phases. Capturing starts from outside
+          in, and bubbling goes from inside out.
+        </li>
+        <li>
+          You can use the <code>preventDefault()</code> method to prevent the default action of an
+          event.
+        </li>
+        <li>
+          You can use the <code>stopPropagation()</code> method to prevent the event from bubbling
+          up the DOM tree.
+        </li>
+        <li>
+          Event delegation allows you to attach an event listener to a parent element that will
+          handle events for any of its child elements.
+        </li>
+        <li>
+          The <code>target</code> property of an event object refers to the element that triggered
+          the event (child element). The <code>currentTarget</code> property refers to the element
+          that is listening for the event (parent element).
+        </li>
+      </ul>
+    </section>
+  </body>
+</html>
