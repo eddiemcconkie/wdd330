@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 04</title>
+    <link rel="stylesheet" href="../css/notes.css" />
+  </head>
+  <body>
+    <section class="page-content">
+      <h1>Week 04</h1>
+      <nav>
+        <a href="../">Home</a>
+        <a href="teamactivity.html">Team Activity</a>
+      </nav>
+      <h2>Chapter 8 - Forms</h2>
+      <ul>
+        <li>
+          Form <code>input</code> elements have multiple events, such as
+          <code>"focus"</code>
+          for when the input gains focus,
+          <code>"blur"</code>
+          for when the input loses focus, and
+          <code>"change"</code>
+          for when the value of the input changes.
+        </li>
+        <li>
+          The <code>autofocus</code> attribute can be used to set the focus to an input
+          automatically when the page loads.
+        </li>
+        <li>
+          The <code>preventDefault()</code> function can be used to stop the form from being
+          submitted.
+        </li>
+        <li>The <code>required</code> attribute can be used to make an input required.</li>
+        <li>
+          Forms provide several types of validation by default, but you can implement your own
+          validation by modifying the <code>submit</code> event on the form.
+        </li>
+        <li>
+          The <code>disabled</code> attribute can be used to disable an input or a submit button.
+        </li>
+      </ul>
+      <h2>Chapter 12 - OOP</h2>
+      <ul>
+        <li>
+          Previously, a constructor function was needed to create objects. ES6 introduced the
+          <code>class</code> declaration keyword, which can be used to create classes in a way
+          that's similar to other OOP languages.
+        </li>
+        <li>
+          In both cases, the <code>new</code> keyword is used to create an instance of a class.
+        </li>
+        <li>
+          Classes can use <code>static</code> methods which belong to the class itself, and not to a
+          specific instance.
+        </li>
+        <li>
+          The prototype of a class can be modified after the class has been declared to add new
+          methods or properties. (Note: the prototype is "live", so any changes made to the
+          prototype will be applied to all instances of the class, even if they have already been
+          created.)
+        </li>
+        <li>
+          The <code>hasOwnProperty()</code> method can be used to check if a property belongs to the
+          object or if it's inherited from the prototype.
+        </li>
+        <li>
+          Modifying the prototype of an object is risky, since you never know if a method will be
+          added in the future. One solution is to create your own subclass of the object using the
+          <code>extends</code> keyword, and then modify the subclass.
+        </li>
+        <li>
+          Using the <code>Object.defineProperty()</code> method, you can define a getter and setter
+          for a property, which gives you greater control over how the property is assigned.
+        </li>
+        <li>
+          If you want to avoid using classes, you can use the <code>Object.create()</code> method to
+          create a new object that inherits from the prototype of another object.
+        </li>
+        <li>Returning <code>this</code> makes it possible to chain methods together.</li>
+      </ul>
+      <h2>Chapter 15 - Modular JavaScript</h2>
+      <ul>
+        <li>
+          JavaScript modules have their own global scope, so the only methods that can be called are
+          those that are exported using the <code>export</code> keyword.
+        </li>
+        <li>JavaScript modules can be imported using the <code>import</code> keyword.</li>
+        <li>
+          <code>Node.js</code> modules (also called <code>Common JS</code> modules) have been around
+          longer and use a slightly different syntax than the new ES6 modules.
+        </li>
+      </ul>
+    </section>
+  </body>
+</html>

@@ -11,6 +11,10 @@ const links = [
     label: 'Week 03',
     url: 'week03',
   },
+  {
+    label: 'Week 04',
+    url: 'week04',
+  },
 ]
 
 const ol = document.querySelector('ol')
