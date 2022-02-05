@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 05</title>
+    <link rel="stylesheet" href="../css/notes.css" />
+  </head>
+  <body>
+    <section class="page-content">
+      <h1>Week 05</h1>
+      <nav>
+        <a href="../">Home</a>
+        <a href="teamactivity/">Team Activity</a>
+      </nav>
+      <h2>Chapter 10 - Testing and Debugging</h2>
+      <ul>
+        <li>
+          Strict mode is a feature of JavaScript that prevents you from writing sloppy code. It
+          catches additional errors and throws exceptions. Writing <code>"use strict";</code> at the
+          top of your file will enable strict mode. Strict mode is enabled by default in ES6
+          modules.
+        </li>
+        <li>
+          Feature Detection is a way to check if a browser supports a certain feature. For example,
+          <pre>
+  <code>if ("IntersectionObserver" in window) {...}</code>
+          </pre>
+          will check if the browser supports the IntersectionObserver API.
+        </li>
+        <li>
+          <code>console.log()</code> or <code>alert()</code> can get help you solve simple bugs.
+          However, learning to use the devtools in your code editor or browser will help you debug
+          more complex problems.
+        </li>
+        <li>You can use the <code>debugger</code> keyword to create a breakpoint in your code.</li>
+        <li>
+          You can throw an error in your code using <code>throw new Error("message")</code>. Errors
+          are caught in the try/catch block.
+        </li>
+        <li>
+          Testing libraries like <code>jest</code> can help you write tests and perform Test-Driven
+          Development (TDD).
+        </li>
+      </ul>
+    </section>
+  </body>
+</html>
