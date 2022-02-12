@@ -5,20 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Challenge 1 - Todo</title>
+    <link rel="stylesheet" href="style.css" />
     <script src="index.js" type="module"></script>
   </head>
   <body>
-    <h1>Todos</h1>
-    <ul id="todoList"></ul>
-    <div>
-      <button class="modeButton" value="all">All</button>
-      <button class="modeButton" value="active">Active</button>
-      <button class="modeButton" value="completed">Completed</button>
-    </div>
-
-    <form id="newTodoForm" autocomplete="off">
-      <input type="text" name="todo" />
-      <button type="submit">Add</button>
-    </form>
+    <section class="main-content">
+      <h1>To-Do List</h1>
+      <div class="todo-area">
+        <ul class="todo-list" id="todoList"></ul>
+        <div class="todo-footer">
+          <span id="todoCount"></span>
+          <div class="mode-button-set">
+            <button class="mode-button selected" value="all">All</button>
+            <button class="mode-button" value="active">Active</button>
+            <button class="mode-button" value="completed">Completed</button>
+          </div>
+        </div>
+      </div>
+      <form class="new-todo-form" id="newTodoForm" autocomplete="off">
+        <input
+          class="todo-input"
+          type="text"
+          name="todoInput"
+          id="todoInput"
+          placeholder="New To-Do"
+          aria-labelledby="submitButton"
+        />
+        <button class="submit-button" type="submit" id="submitButton">Add</button>
+      </form>
+    </section>
   </body>
 </html>
