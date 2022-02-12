@@ -21,7 +21,7 @@ const links = [
   },
   {
     label: 'Challenge 01',
-    url: '/challenge01/',
+    url: './challenge01/',
   },
 ]
 
