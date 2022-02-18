@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 07</title>
+    <link rel="stylesheet" href="../css/notes.css" />
+  </head>
+  <body>
+    <section class="page-content">
+      <h1>Week 07</h1>
+      <nav>
+        <a href="../">Home</a>
+        <a href="teamactivity/">Team Activity</a>
+      </nav>
+      <h2>Chapter 11 - Further Functions</h2>
+      <ul>
+        <li>
+          The <code>call</code> method can be used by a function to specify a value for
+          <code>this</code>, as well as take in a set of parameters. The <code>apply</code> method
+          is similar, but takes in an array of parameters.
+        </li>
+        <li>
+          Functions are objects, and can have properties defined on them. This can be useful when
+          implementing memoization (caching of results).
+        </li>
+        <li>
+          Immediately Invoked Function Expressions (IIFE) are a way to create a function that is
+          immediately executed by wrapping the function declaration in parentheses and then invoking
+          it.
+        </li>
+        <li>
+          IIFE's can be used to create temporary variables that are not accessible outside of the
+          function or create a block where strict mode can be used without affecting existing code.
+        </li>
+        <li>
+          Init-time branching allows you to redefine the behavior of a function based on a
+          condition, such as whether or not the browser supports a certain API.
+        </li>
+        <li>
+          Promises allow you to wait for a value that will be available later. Promises can be
+          chained together using <code>then</code> to specify what should happen when the promise is
+          resolved or rejected.
+        </li>
+        <li>
+          <code>async</code> and <code>await</code> allow you to wait for a promise to resolve
+          before continuing.
+        </li>
+        <li>
+          Closures are created by returning a function from another function, where the inner
+          function has access to the variables in the outer function. Even after the outer function
+          has returned, the inner function still has access to the variables in the outer function.
+        </li>
+        <li>
+          Generator functions are created by using <code>function*</code> and the
+          <code>yield</code> keyword. After calling the generator function, the
+          <code>next</code> method can be called to get the next value.
+        </li>
+        <li>Generators work as iterators, and can be used in <code>for-of</code> loops.</li>
+        <li>
+          Curried functions are higher-order functions that take in multiple arguments. If all
+          arguments are provided, the function will behave like normal. If only some of the
+          arguments are provided, the function will return a new function that takes in the
+          remaining arguments.
+        </li>
+      </ul>
+      <h2>Chapter 13 - AJAX</h2>
+      <ul>
+        <li>
+          AJAX was created to allow webpages to send and receive data from a server without having
+          to reload the page. More recently, the <code>fetch</code> API was introduced to perform
+          similar requests. The <code>fetch</code> API is promise-based.
+        </li>
+      </ul>
+    </section>
+  </body>
+</html>
