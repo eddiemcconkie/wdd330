@@ -35,6 +35,14 @@ const links = [
     label: 'Week 09',
     url: './week09/',
   },
+  {
+    label: 'Challenge 02',
+    url: './challenge02/',
+  },
+  {
+    label: 'Week 10',
+    url: './week10/',
+  },
 ]
 
 const ol = document.querySelector('ol')
