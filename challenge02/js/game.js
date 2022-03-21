@@ -8,13 +8,10 @@ export default class Game extends View {
   }
 
   render() {
-    this.element.innerHTML = `<h2>Game</h2>`
+    const quitButton = this.createNavigationButton('Quit', settingsView)
 
-    const button = document.createElement('button')
-    button.addEventListener('click', () => {
-      this.animateTo(settingsView)
-    })
-    button.textContent = 'Quit'
-    this.element.appendChild(button)
+    this.createView`<h2>Game</h2>
+      ${quitButton}
+    `
   }
 }

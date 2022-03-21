@@ -1,5 +1,6 @@
 import View from './view.js'
 import { settingsView, statsView } from './main.js'
+import { addClass } from './utils.js'
 
 export default class Home extends View {
   constructor(...args) {
@@ -8,27 +9,14 @@ export default class Home extends View {
   }
 
   render() {
-    this.element.innerHTML = '<h1>Trivia Game</h1>'
+    const playButton = this.createNavigationButton('Play', settingsView)
+    addClass(playButton, 'button--primary')
+    const statsButton = this.createNavigationButton('Stats', statsView)
+    addClass(statsButton, 'button--secondary')
 
-    const button = document.createElement('button')
-    button.addEventListener('click', () => {
-      this.animateTo(settingsView)
-    })
-    button.textContent = 'Play'
-    this.element.appendChild(button)
-
-    // const gameButton = document.createElement('button')
-    // gameButton.addEventListener('click', () => {
-    //   this.animateTo(gameView)
-    // })
-    // gameButton.textContent = 'Go to Game'
-    // this.element.appendChild(gameButton)
-
-    const statsButton = document.createElement('button')
-    statsButton.addEventListener('click', () => {
-      this.animateTo(statsView)
-    })
-    statsButton.textContent = 'Stats'
-    this.element.appendChild(statsButton)
+    this.createView`<h1>Trivia Game</h1>
+      ${playButton}
+      ${statsButton}
+    `
   }
 }

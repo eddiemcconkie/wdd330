@@ -39,4 +39,21 @@ export default class View {
   hide() {
     this.element.innerHTML = ''
   }
+
+  createView(html, ...elements) {
+    html.forEach((string, i) => {
+      this.element.insertAdjacentHTML('beforeend', string)
+      i < elements.length && this.element.insertAdjacentElement('beforeend', elements[i])
+    })
+  }
+
+  createNavigationButton = (label, nextView) => {
+    const button = document.createElement('button')
+    button.textContent = label
+    button.addEventListener('click', () => {
+      this.animateTo(nextView)
+    })
+
+    return button
+  }
 }

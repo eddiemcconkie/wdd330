@@ -8,13 +8,10 @@ export default class Stats extends View {
   }
 
   render() {
-    this.element.innerHTML = '<h2>Stats</h2>'
+    const backButton = this.createNavigationButton('Back', homeView)
 
-    const button = document.createElement('button')
-    button.addEventListener('click', () => {
-      this.animateTo(homeView)
-    })
-    button.textContent = 'Back'
-    this.element.appendChild(button)
+    this.createView`<h2>Stats</h2>
+      ${backButton}
+    `
   }
 }
