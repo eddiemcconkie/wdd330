@@ -68,6 +68,7 @@ button {
   display: flex;
   align-items: center;
   gap: 1rem;
+  margin-top: 2rem;
 }
 
 .button--primary {
@@ -146,7 +147,11 @@ button.selected {
   font-size: 1.2rem;
   padding-inline: 1rem;
 
-  background: linear-gradient(to right, #ff825a, #815bff) fixed;
+  /* background: linear-gradient(to right, #ff825a, #815bff) fixed; */
+  /* background: #d576b4; */
+  background: linear-gradient(to bottom, #d576b4, #a058b4);
+
+  /* transition: transform 0.2s; */
 }
 
 .difficulties button.selected {
@@ -178,12 +183,14 @@ button.selected {
   /* margin: 2rem; */
   padding: 0 1rem;
   min-height: 7rem;
-
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  scroll-padding-left: 3rem;
-  scroll-padding-right: auto;
-  /* scroll-snap-stop: always; */
+}
+@supports (scroll-behavior: smooth) {
+  .categories {
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: 3rem;
+    scroll-padding-right: auto;
+  }
 }
 .categories button {
   /* width: min-content; */
@@ -200,7 +207,11 @@ button.selected {
   /* min-width: max(10rem, min-content); */
   scroll-snap-align: start;
 
-  background: linear-gradient(to right, #ff7b4f, #815bff) fixed;
+  /* background: linear-gradient(to right, #ff7b4f, #815bff) fixed; */
+  /* background: #d576b4; */
+  background: linear-gradient(to bottom, #d576b4, #a058b4);
+
+  /* transition: transform 0.2s; */
 }
 
 .categories button.selected {
@@ -215,7 +226,8 @@ button.selected {
 
   /* background: linear-gradient(to bottom right, #ffd074, #ffac75); */
   /* background: linear-gradient(to bottom right, #ffc552, #ff8f44); */
-  background: linear-gradient(to bottom, #ffb452, #ff8f44) fixed;
+  /* background: linear-gradient(to bottom, #ffb452, #ff8f44) fixed; */
+  background: linear-gradient(to bottom, #ffb452, #ff8f44);
   z-index: 1;
 }
 .difficulties button:hover,
@@ -245,7 +257,9 @@ button:focus-visible {
 }
 
 .questions button {
-  background: linear-gradient(to right, #ff825a, #815bff) fixed;
+  /* background: linear-gradient(to right, #ff825a, #815bff) fixed; */
+  /* background: #d576b4; */
+  background: linear-gradient(to bottom, #d576b4, #a058b4);
 }
 
 .questions button:hover {
@@ -262,35 +276,151 @@ button:focus-visible {
   text-shadow: 0 3px #0006;
 }
 
+.question-display {
+  font-size: 1.3rem;
+  background-color: #0008;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  width: 90%;
+  max-width: 35rem;
+}
+
+.answer-display {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  /* justify-content: center; */
+  /* display: grid; */
+  /* grid-template-columns: 1fr 1fr; */
+  margin-block: 2rem;
+  gap: 1rem;
+  /* max-width: 90%; */
+  width: 80%;
+  max-width: 20rem;
+}
+
+.answer-display button {
+  font-size: 1.2rem;
+  margin: 0;
+  padding: 0.5rem 1rem;
+  /* width: 100%; */
+  /* min-width: auto; */
+  opacity: 0;
+  animation: fade-in-bottom 0.5s var(--delay) forwards;
+}
+
+.answer-display button.correct-answer {
+  background-color: #d2ff6a;
+  animation: none;
+  opacity: 1;
+  /* transform: scale(1.05); */
+  animation: grow 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.answer-display button.incorrect-answer {
+  background-color: #ff7856;
+  opacity: 1;
+  animation: wobble 0.5s;
+}
+
+.score-message {
+  display: block;
+  font-size: 1.7rem;
+
+  animation: pop 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(1.3);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes grow {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes wobble {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(2px);
+  }
+  40% {
+    transform: translateX(-2px);
+  }
+  60% {
+    transform: translateX(2px);
+  }
+  80% {
+    transform: translateX(-2px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
 .view-container {
+  display: flex;
   /* overflow-x: hidden; */
   /* overflow-y: auto; */
   /* overflow: hidden; */
   position: relative;
-  width: 100%;
+  /* width: 100%; */
   min-height: 100vh;
 
   /* background: url(../images/stripe.png) repeat center center fixed ,
     radial-gradient(circle at 50% 25%, #4f5ff0, #190627); */
-  background: radial-gradient(circle at 50% 25%, #4f5ff0, #190627);
+  /* background: radial-gradient(circle at 50% 25%, #4f5ff0, #190627); */
+
+  transform: translateX(calc(-100vw * var(--view-position)));
+  transition: transform 0.2s ease-in-out;
 }
-.view-container::after {
+body {
+  background: radial-gradient(circle at 50% 25%, #4f5ff0, #190627);
+  width: 100vw;
+  /* height: 100vh; */
+}
+/* .view-container::after { */
+body::after {
   content: '';
-  position: absolute;
+  /* position: absolute; */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background: url(../images/stripe.png) repeat center;
   opacity: 0.2;
-  /* z-index: -1; */
+  z-index: -1;
+}
+html,
+body {
+  overflow-x: hidden;
 }
 
 .view {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
+  /* position: absolute; */
+  /* top: 0; */
+  /* left: 0; */
+  /* width: 100%; */
+  width: 100vw;
+  flex-shrink: 0;
   /* min-height: 100vh; */
   height: 100%;
   /* overflow-y: auto; */

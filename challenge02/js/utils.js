@@ -22,5 +22,21 @@ export const setLocalStorage = (key, value) => {
 
 export const getLocalStorage = (key) => {
   const value = JSON.parse(localStorage.getItem(key))
-  return value || prefDefaults[key]
+  return value || prefDefaults[key] || null
+}
+
+const viewContainer = document.querySelector('#viewContainer')
+
+export const showView = (view) => {
+  viewContainer.style = `--view-position: ${view}`
+}
+
+export const createAnswerButton = (answer, i) => {
+  const button = document.createElement('button')
+  button.type = 'submit'
+  button.name = 'answer'
+  button.value = i
+  button.innerHTML = answer
+  button.style = `--delay: ${i / 5}s`
+  return button
 }

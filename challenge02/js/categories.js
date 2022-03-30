@@ -10,7 +10,7 @@ const categoryButtonSet = () => {
   const setSelected = (category) => {
     Array.from(parent.children).forEach((button) => {
       button.classList.toggle('selected', button.value == category)
-      if (button.value == category) {
+      if (CSS.supports('scroll-behavior', 'smooth') && button.value == category) {
         // scroll horizontally to button
         const buttonRect = button.getBoundingClientRect()
         const parentRect = parent.getBoundingClientRect()
