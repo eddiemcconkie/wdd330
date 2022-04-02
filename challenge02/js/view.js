@@ -58,7 +58,7 @@ export default class View {
 
   createNavigationButton = (label, nextView) => {
     const button = document.createElement('button')
-    button.textContent = label
+    button.innerHTML = label
     button.addEventListener('click', () => {
       this.animateTo(nextView)
       // showView(nextView.screenPosition)

@@ -1,28 +1,30 @@
-import { getLocalStorage, setLocalStorage } from './utils.js'
+import { addClass, getLocalStorage } from './utils.js'
 
 const difficultyButtonSet = () => {
-  const parent = document.createElement('div')
+  const parent = document.createElement('fieldset')
   const difficulties = ['easy', 'medium', 'hard']
   parent.classList.add('difficulties')
 
-  const setSelected = (difficulty) => {
-    Array.from(parent.children).forEach((button) => {
-      button.classList.toggle('selected', button.textContent === difficulty)
-    })
-  }
-
   difficulties.forEach((difficulty) => {
-    const button = document.createElement('button')
-    button.textContent = difficulty
-    button.addEventListener('click', () => {
-      setLocalStorage('difficulty', difficulty)
-      setSelected(difficulty)
-    })
-    parent.appendChild(button)
-  })
+    const radio = document.createElement('input')
+    const id = `difficulty-${difficulty}`
+    radio.id = id
+    radio.type = 'radio'
+    radio.name = 'difficulty'
+    radio.value = difficulty
 
-  const preferredDifficulty = getLocalStorage('difficulty')
-  setSelected(preferredDifficulty)
+    if (difficulty === getLocalStorage('difficulty')) {
+      radio.checked = true
+    }
+
+    const label = document.createElement('label')
+    label.htmlFor = id
+    label.textContent = difficulty
+    addClass(label, 'button')
+
+    parent.appendChild(radio)
+    parent.appendChild(label)
+  })
 
   return parent
 }

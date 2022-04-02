@@ -1,50 +1,30 @@
 import { getCategories } from './api.js'
-import { getLocalStorage, setLocalStorage } from './utils.js'
+import { addClass, getLocalStorage } from './utils.js'
 
 const categoryButtonSet = () => {
-  const parent = document.createElement('div')
+  const parent = document.createElement('fieldset')
   parent.textContent = 'Loading categories...'
   parent.classList.add('categories')
-  // let currentCategory = getLocalStorage('category')
-
-  const setSelected = (category) => {
-    Array.from(parent.children).forEach((button) => {
-      button.classList.toggle('selected', button.value == category)
-      if (CSS.supports('scroll-behavior', 'smooth') && button.value == category) {
-        // scroll horizontally to button
-        const buttonRect = button.getBoundingClientRect()
-        const parentRect = parent.getBoundingClientRect()
-        // if on a large screen, scroll item to center horizontally
-        if (window.innerWidth >= 768) {
-          const parentWidth = parent.clientWidth
-          const itemWidth = button.clientWidth
-          const scrollLeft = buttonRect.left - parentRect.left - parentWidth / 2 + itemWidth / 2
-          parent.scrollLeft += scrollLeft
-        } else {
-          const scrollLeft = buttonRect.left - parentRect.left
-          parent.scrollLeft += scrollLeft
-        }
-      }
-    })
-  }
 
   getCategories().then((categories) => {
     parent.innerHTML = ''
     categories.forEach((category) => {
-      const button = document.createElement('button')
-      // Remove anything up to the colon if there is one, such as "Entertainment: "
-      button.textContent = category.name.replace(/.+: /, '')
-      button.value = category.id
-      button.addEventListener('click', () => {
-        setLocalStorage('category', category.id)
-        setSelected(category.id)
-      })
-      parent.appendChild(button)
+      const radio = document.createElement('input')
+      const id = `category-${category.id}`
+      radio.id = id
+      radio.type = 'radio'
+      radio.name = 'category'
+      radio.value = category.id
+      if (category.id == getLocalStorage('category')) {
+        radio.checked = true
+      }
+      const label = document.createElement('label')
+      label.textContent = category.name.replace(/.+: /, '')
+      label.htmlFor = id
+      addClass(label, 'button')
+      parent.appendChild(radio)
+      parent.appendChild(label)
     })
-    const category = getLocalStorage('category')
-    parent.style.scrollBehavior = 'auto'
-    setSelected(category)
-    parent.style.scrollBehavior = 'smooth'
   })
 
   return parent

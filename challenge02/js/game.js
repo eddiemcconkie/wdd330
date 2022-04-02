@@ -1,20 +1,17 @@
 import View from './view.js'
-import Settings from './settings.js'
 import { addClass, createAnswerButton, getLocalStorage } from './utils.js'
 import { getQuestions } from './api.js'
 import { settingsView } from './main.js'
 
 export default class Game extends View {
-  // static screenPosition = 3
-
   constructor(...args) {
     super(...args)
     this.title = 'Game'
   }
 
   render() {
-    const quitButton = this.createNavigationButton('Quit', settingsView)
-    // const quitButton = this.createNavigationButton('Quit', Settings)
+    this.quitButton = this.createNavigationButton('&laquo; Quit', settingsView)
+    addClass(this.quitButton, 'button--naked align-vertical-bottom')
 
     this.header = document.createElement('h2')
     this.questionDisplay = document.createElement('p')
@@ -24,20 +21,16 @@ export default class Game extends View {
       ${this.header}
       ${this.questionDisplay}
       ${this.answerDisplay}
-      ${quitButton}
+      ${this.quitButton}
     `
 
     this.questionDisplay.innerHTML = 'Loading...'
     addClass(this.questionDisplay, 'question-display')
     addClass(this.answerDisplay, 'answer-display')
 
-    // this.answerDisplay.addEventListener('submit', (e) => {
     this.answerDisplay.addEventListener('click', (e) => {
-      // e.preventDefault()
       const target = e.target
       if (target.tagName === 'BUTTON') {
-        this.answerDisplay.style.pointerEvents = 'none'
-
         const answer = target.value
         if (answer == this.correctAnswer) {
           addClass(target, 'correct-answer')
@@ -50,18 +43,25 @@ export default class Game extends View {
           addClass(correctButton, 'correct-answer')
         }
 
-        setTimeout(() => {
-          this.questionDisplay.innerHTML = ''
-          this.answerDisplay.innerHTML = ''
-          this.answerDisplay.style.pointerEvents = 'auto'
-          if (this.questions.length) {
-            this.nextQuestion()
-          } else {
-            this.showScore()
-          }
-        }, 1000)
+        this.showAnswer()
       }
     })
+  }
+
+  showAnswer() {
+    clearInterval(this.interval)
+    this.answerDisplay.style.pointerEvents = 'none'
+
+    setTimeout(() => {
+      this.questionDisplay.innerHTML = ''
+      this.answerDisplay.innerHTML = ''
+      this.answerDisplay.style.pointerEvents = 'auto'
+      if (this.questions.length) {
+        this.nextQuestion()
+      } else {
+        this.showScore()
+      }
+    }, 1000)
   }
 
   async init() {
@@ -70,11 +70,11 @@ export default class Game extends View {
     const numQuestions = getLocalStorage('numQuestions')
 
     const categories = getLocalStorage('categories')
-    const categoryName = categories.find((c) => c.id === category).name.replace(/.+: /, '')
+    const categoryName = categories.find((c) => c.id == category).name.replace(/.+: /, '')
     this.header.textContent = `${categoryName} - ${difficulty}`
+    this.questionDisplay.style = `--timer-width: 0%`
 
     this.questions = await getQuestions(difficulty, category, numQuestions)
-    // console.table(this.questions)
     this.score = 0
     this.total = this.questions.length
     this.nextQuestion()
@@ -89,6 +89,9 @@ export default class Game extends View {
     this.header.innerHTML = ''
     this.questionDisplay.innerHTML = ''
     this.answerDisplay.innerHTML = ''
+    clearInterval(this.interval)
+    this.questionDisplay.style = `--timer-width: 0%`
+    this.quitButton.innerHTML = '&laquo; Quit'
   }
 
   nextQuestion() {
@@ -103,11 +106,28 @@ export default class Game extends View {
         this.correctAnswer = i
       }
     })
+
+    let timer = 10
+    this.questionDisplay.style = `--timer-width: 100%`
+    this.interval = setInterval(() => {
+      timer--
+      // this.questionDisplay.style = `--timer: ${timer}`
+      this.questionDisplay.style = `--timer-width: ${timer * 10}%`
+      if (timer === 0) {
+        const correctButton = this.answerDisplay.querySelector(
+          `button:nth-child(${this.correctAnswer + 1})`
+        )
+        addClass(correctButton, 'correct-answer')
+        this.showAnswer()
+      }
+    }, 1000)
   }
 
   showScore() {
     const messages = ['Sorry!', 'Bummer!', 'Keep trying!', 'Not bad!', 'Great job!', 'Amazing!']
     const outOfFive = Math.round((this.score / this.total) * 5)
     this.questionDisplay.innerHTML = `<strong class="score-message">${messages[outOfFive]}</strong><br/>You got ${this.score} / ${this.total} correct`
+    this.questionDisplay.style = `--timer-width: 0%`
+    this.quitButton.innerHTML = '&laquo; Back'
   }
 }

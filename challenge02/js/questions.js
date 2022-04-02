@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorage, addClass } from './utils.js'
+import { getLocalStorage, addClass } from './utils.js'
 
 const questionsButtonSet = () => {
   const parent = document.createElement('div')
@@ -11,36 +11,41 @@ const questionsButtonSet = () => {
   preferredNumQuestions = Math.max(Math.min(preferredNumQuestions, maxQuestions), minQuestions)
 
   const downButton = document.createElement('button')
-  // addClass(downButton, 'button--arrow')
   const leftArrowIcon = document.createElement('img')
   leftArrowIcon.src = './images/left-arrow.svg'
   leftArrowIcon.alt = 'left arrow'
+  downButton.type = 'button'
   downButton.ariaLabel = 'Decrease number of questions'
   downButton.appendChild(leftArrowIcon)
 
-  const numQuestions = document.createElement('span')
-  numQuestions.textContent = `${preferredNumQuestions}`
+  const numQuestions = document.createElement('input')
+  numQuestions.type = 'number'
+  numQuestions.min = `${minQuestions}`
+  numQuestions.max = `${maxQuestions}`
+  numQuestions.step = '5'
+  numQuestions.name = 'numQuestions'
+  numQuestions.value = `${preferredNumQuestions}`
+  numQuestions.readOnly = true
+  numQuestions.setAttribute('aria-label', 'Number of questions')
 
   const upButton = document.createElement('button')
-  // addClass(upButton, 'button--arrow')
   const rightArrowIcon = document.createElement('img')
   rightArrowIcon.src = './images/right-arrow.svg'
   rightArrowIcon.alt = 'right arrow'
+  upButton.type = 'button'
   upButton.ariaLabel = 'Increase number of questions'
   upButton.appendChild(rightArrowIcon)
 
   downButton.addEventListener('click', () => {
     if (preferredNumQuestions > minQuestions) {
       preferredNumQuestions -= 5
-      numQuestions.textContent = `${preferredNumQuestions}`
-      setLocalStorage('numQuestions', preferredNumQuestions)
+      numQuestions.value = preferredNumQuestions
     }
   })
   upButton.addEventListener('click', () => {
     if (preferredNumQuestions < maxQuestions) {
       preferredNumQuestions += 5
-      numQuestions.textContent = `${preferredNumQuestions}`
-      setLocalStorage('numQuestions', preferredNumQuestions)
+      numQuestions.value = preferredNumQuestions
     }
   })
 
